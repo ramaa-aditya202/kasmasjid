@@ -101,7 +101,7 @@ $ php artisan buku-masjid:remove-demo-data
 
 #### Jadwal Pengajian
 
-![Jadwal Pengajian](public/screenshots/Screenshot_63.png)
+![Jadwal Pengajian](public/screenshots/Screenshot_64.png)
 
 
 ## Lisensi
