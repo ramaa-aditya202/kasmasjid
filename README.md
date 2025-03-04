@@ -96,40 +96,13 @@ $ php artisan buku-masjid:remove-demo-data
 
 #### Laporan Bulanan
 
-![Laporan Bulanan](public/screenshots/01-monthly-report-for-public.jpg)
+![Laporan Bulanan](public/screenshots/Screenshot_63.jpg)
 
-#### Laporan Per Kategori
-
-![Laporan Per](public/screenshots/02-categorized-report-for-public.jpg)
-
-#### Laporan Per Pekan
-
-![Laporan Per](public/screenshots/03-weekly-report-for-public.jpg)
 
 #### Jadwal Pengajian
 
-![Jadwal Pengajian](public/screenshots/04-lecturing-schedule-for-this-week.jpg)
+![Jadwal Pengajian](public/screenshots/Screenshot_63.jpg)
 
-## Kontribusi
-
-Jika Anda ingin berkontribusi pada proyek ini, kami sangat menghargainya. Berikut beberapa yang dapat Anda lakukan:
-
-1. Laporkan [issue](https://github.com/buku-masjid/buku-masjid/issues) jika Anda menemui kesalahan atau bug.
-2. Sampaikan [diskusi](https://github.com/buku-masjid/buku-masjid/discussions) jika Anda ingin mengusulkan fitur baru atau perubahan pada fitur yang sudah ada.
-3. Ajukan [pull request](https://github.com/buku-masjid/buku-masjid/pulls) untuk perbaikan bug, penambahan fitur baru, atau perbaikan label.
-
-## Kontak
-
-Untuk Diskusi:
-
-* [Grup Chat Telegram](https://t.me/bukumasjid_id)
-* [Usulan Fitur Baru](https://github.com/buku-masjid/buku-masjid/discussions)
-
-Untuk pengumuman dan update:
-
-* [Follow Twitter](https://twitter.com/bukumasjid)
-* [Like Facebook Page](https://facebook.com/bukumasjid)
-* [Telegram Channel](https://t.me/bukumasjid)
 
 ## Lisensi
 
