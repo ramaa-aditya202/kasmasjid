@@ -96,12 +96,12 @@ $ php artisan buku-masjid:remove-demo-data
 
 #### Laporan Bulanan
 
-![Laporan Bulanan](public/screenshots/Screenshot_63.jpg)
+![Laporan Bulanan](public/screenshots/Screenshot_63.png)
 
 
 #### Jadwal Pengajian
 
-![Jadwal Pengajian](public/screenshots/Screenshot_63.jpg)
+![Jadwal Pengajian](public/screenshots/Screenshot_63.png)
 
 
 ## Lisensi
