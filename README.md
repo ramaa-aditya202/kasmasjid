@@ -17,20 +17,6 @@ Buku Masjid adalah sistem pengelolaan keuangan dan jadwal pengajian masjid berba
 - Mengurangi beban tugas bendahara dalam pembuatan laporan kas masjid/mushalla.
 - Memungkinkan masyarakat/jamaah untuk memantau jadwal pengajian secara online.
 
-## Sponsor / Mitra
-
-Kami ingin berterima kasih kepada sponsor yang mendukung development Buku Masjid.
-
-1. [Raizora Indonesia](https://www.instagram.com/raizora_indonesia)
-1. [Pondok Teknologi](https://pondokteknologi.com)
-1. [Pondok IT](https://pondokit.com)
-1. [Mushaira](https://mushaira.id)
-1. [Pyramidsoft Indonesia Group](https://ptpsig.com)
-1. [LKSA Al Ma'un Center](https://lynk.id/almauncenter)
-1. [STIMI Banjarmasin](https://stimi-bjm.ac.id)
-
-Jika anda tertarik untuk menjadi sponsor/mitra, silakan hubungi Whatsapp Tim Buku Masjid pada halaman [Kontak Buku Masjid](https://bukumasjid.com/contact).
-
 ## Fitur
 
 1. Pengelolaan buku catatan: Setiap kegiatan dapat dicatat di buku catatan kas yang terpisah.
@@ -55,7 +41,7 @@ Aplikasi ini dapat diinstal pada server lokal maupun online dengan spesifikasi b
 
 ### Langkah Instalasi
 
-1. Clone repositori ini dengan perintah: `git clone https://github.com/buku-masjid/buku-masjid.git`
+1. Clone repositori ini
 2. Masuk ke direktori buku-masjid: `$ cd buku-masjid`
 3. Instal dependensi menggunakan: `$ composer install`
 4. Salin berkas `.env.example` ke `.env`: `$ cp .env.example .env`
@@ -64,13 +50,13 @@ Aplikasi ini dapat diinstal pada server lokal maupun online dengan spesifikasi b
 7. Konfigurasi database dan pengaturan lainnya di berkas `.env`.
     ```
     APP_URL=http://localhost
-    APP_TIMEZONE="Asia/Makassar"
+    APP_TIMEZONE="Asia/Jakarta"
 
     DB_DATABASE=homestead
     DB_USERNAME=homestead
     DB_PASSWORD=secret
 
-    MASJID_NAME="Masjid Ar-Rahman"
+    MASJID_NAME="Masjid Al-Huda"
     MASJID_DEFAULT_BOOK_ID=1
     AUTH_DEFAULT_PASSWORD=password
 
@@ -89,43 +75,6 @@ Aplikasi ini dapat diinstal pada server lokal maupun online dengan spesifikasi b
     password: password
     ```
 
-### Langkah Install dengan Docker
-
-Untuk menggunakan docker silahkan jalankan perintah ini di terminal:
-
-1. Buat file .env
-    ```bash
-    $ cp .env.example .env
-    ```
-2. Update untuk mengubah env `DB_HOST`:
-    ```bash
-    DB_HOST=mysql_host
-    ```
-    Atau Anda dapat mengotomatiskan proses ini menggunakan perintah ini.
-    ```bash
-    COPY .env.example .env.tmp
-    sed 's/DB_HOST=127.0.0.1/DB_HOST=mysql_host/' .env.tmp > .env && rm .env.tmp
-    ```
-3. Build docker images dan jalankan container:
-    ```bash
-    docker-compose build
-    docker-compose up -d
-    ```
-4. Jalankan database migration:
-    ```bash
-    docker-compose exec server php artisan migrate --seed
-    ```
-5. Buka web browser dengan alamat web: http://localhost:8000, kemudian login dengan default user:
-    ```
-    email: admin@example.net
-    password: password
-    ```
-6. Untuk masuk ke docker container shell:
-    ```bash
-    docker-compose exec server sh
-    docker-compose exec mysql bash
-    ```
-
 ### Data Demo
 
 Ketika sudah ter-install di localhost, kita bisa generate data dummy untuk simulasi sistem buku masjid. Datad demo dapat di-generate dengan perintah berikut:
@@ -142,7 +91,6 @@ Hapus semua demo data (yang `created_at` nya `NULL`)
 $ php artisan buku-masjid:remove-demo-data
 ```
 
-Lengkapnya dapat dilihat pada: [Dokumentasi buku-masjid/demo-data](https://github.com/buku-masjid/demo-data#cara-pakai).
 
 ## Screenshot
 
