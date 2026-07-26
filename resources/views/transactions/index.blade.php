@@ -87,7 +87,7 @@
                                         <a href="{{ $categoryRoute }}">{!! optional($transaction->category)->name_label !!}</a>
                                     @endif
                                 </span>
-                                <div style="max-width: 600px" class="mr-3">{!! $transaction->date_alert !!} {{ $transaction->description }}</div>
+                                <div style="max-width: 600px" class="mr-3">{!! $transaction->date_alert !!} {!! nl2br(htmlentities($transaction->description)) !!}</div>
                             </td>
                             <td class="text-right">{{ $transaction->amount_string }}</td>
                             <td class="text-center">
@@ -102,6 +102,18 @@
                                     @endcan
                                 @endcan
                                 {{ link_to_route('transactions.show', __('app.detail'), $transaction) }}
+                                @can('create', new App\Transaction)
+                                    | {{ link_to_route(
+                                        'transactions.create',
+                                        __('app.duplicate'),
+                                        [
+                                            'action' => $transaction->in_out ? 'add-income' : 'add-spending',
+                                            'original_transaction_id' => $transaction->id,
+                                            'reference_page' => 'transactions',
+                                        ] + request(['month', 'year', 'query', 'category_id', 'bank_account_id']),
+                                        ['id' => 'duplicate-transaction-'.$transaction->id]
+                                    ) }}
+                                @endcan
                             </td>
                         </tr>
                         @empty
@@ -133,14 +145,7 @@
                         <tr class="strong">
                             <td colspan="3" class="text-right">{{ __('transaction.start_balance') }}</td>
                             <td class="text-right">
-                                @php
-                                    $balance = 0;
-                                @endphp
-                                @if ($transactions->first())
-                                    {{ format_number($balance = auth()->activeBook()->getBalance(Carbon\Carbon::parse($transactions->first()->date)->subDay()->format('Y-m-d'))) }}
-                                @else
-                                    0
-                                @endif
+                                {{ format_number($balance = auth()->activeBook()->getBalance(Carbon\Carbon::parse($startDate)->subDay()->format('Y-m-d'))) }}
                             </td>
                             <td>&nbsp;</td>
                         </tr>
@@ -157,11 +162,7 @@
                         <tr class="strong">
                             <td colspan="3" class="text-right">{{ __('transaction.end_balance') }}</td>
                             <td class="text-right">
-                                @if ($transactions->first())
-                                    {{ format_number($balance + $incomeTotal - $spendingTotal) }}
-                                @else
-                                    0
-                                @endif
+                                {{ format_number($balance + $incomeTotal - $spendingTotal) }}
                             </td>
                             <td>&nbsp;</td>
                         </tr>

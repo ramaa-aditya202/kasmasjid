@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Services\ShalatTimes\ShalatTimeService;
 use Carbon\Carbon;
 use Exception;
-use Facades\App\Helpers\Setting;
 use Illuminate\Support\Facades\Log;
 
 class PublicShalatTimeController extends Controller
@@ -21,14 +20,31 @@ class PublicShalatTimeController extends Controller
         }
 
         try {
-            $cityName = Setting::get('masjid_city_name');
-            $date = Carbon::now()->format('Y-m-d');
+            $schedule = $shalatTimeService->getSchedule(Carbon::now()->format('Y-m-d'));
+            $schedule = $this->adjustShalatTimeSchedule($schedule);
 
-            return $shalatTimeService->getSchedule($cityName, $date);
+            return $schedule;
         } catch (Exception $e) {
             Log::error('Error fetching prayer times: '.$e->getMessage());
 
             return response()->json(['error' => 'Failed to fetch prayer times.'], 500);
         }
+    }
+
+    private function adjustShalatTimeSchedule(array $schedule): array
+    {
+        $shalatTimeAdjustmentConfig = config('shalat_time.adjustment_in_minutes');
+        foreach ($shalatTimeAdjustmentConfig as $shalatTimeCode => $shalatTimeAdjustmentInMinutes) {
+            if (is_null($shalatTimeAdjustmentInMinutes)) {
+                continue;
+            }
+            $newSchedule = Carbon::parse($schedule['schedules'][$shalatTimeCode])->addMinutes($shalatTimeAdjustmentInMinutes);
+            $schedule['schedules'][$shalatTimeCode] = $newSchedule->format('H:i');
+            if ($shalatTimeCode == 'fajr' && is_null($shalatTimeAdjustmentConfig['imsak'])) {
+                $schedule['schedules']['imsak'] = $newSchedule->subMinutes(10)->format('H:i');
+            }
+        }
+
+        return $schedule;
     }
 }

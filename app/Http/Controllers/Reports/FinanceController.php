@@ -94,7 +94,7 @@ class FinanceController extends Controller
             } else {
                 $endDayInteger = constant('\Carbon\Carbon::'.strtoupper($book->start_week_day_code));
 
-                return Carbon::now()->endOfWeek($endDayInteger)->subDay();
+                return Carbon::now()->addDay()->endOfWeek($endDayInteger)->subDay();
             }
         }
         if ($request->has('end_date')) {
@@ -129,5 +129,18 @@ class FinanceController extends Controller
         }
 
         return Carbon::parse($yearMonth.'-01')->endOfMonth();
+    }
+
+    protected function getWeekLabelsByDateRange(string $startDate, string $endDate, string $startWeekDay)
+    {
+        $dateRangePerWeek = get_date_range_per_week($startDate, $endDate, $startWeekDay);
+
+        $dateRanges = [];
+        foreach ($dateRangePerWeek as $weekNumber => $weekDateRanges) {
+            $dateRangeText = get_date_range_text($weekDateRanges[0], end($weekDateRanges));
+            $dateRanges[$weekNumber] = $dateRangeText;
+        }
+
+        return $dateRanges;
     }
 }

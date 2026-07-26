@@ -16,6 +16,10 @@ Route::view('/kontak', 'guest.contact')->name('public.contact');
 Route::get('/programs', 'PublicBookController@index')->name('public.books.index');
 Route::get('/programs/{book}', 'PublicBookController@show')->name('public.books.show');
 
+if (config('features.public_display.is_active')) {
+    Route::get('/display', 'PublicDisplayController@index')->name('public.display.index');
+}
+
 Auth::routes(['register' => false, 'reset' => false]);
 
 Route::group(['prefix' => 'laporan-kas', 'as' => 'public_reports.'], function () {
@@ -146,6 +150,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('database_backups/{fileName}/restore', ['as' => 'database_backups.restore', 'uses' => 'DatabaseBackupController@restore']);
     Route::get('database_backups/{fileName}/dl', ['as' => 'database_backups.download', 'uses' => 'DatabaseBackupController@download']);
     Route::resource('database_backups', 'DatabaseBackupController', ['except' => ['create', 'show', 'edit']]);
+
+    /*
+     * File Backup Routes
+     */
+    Route::post('file_backups/upload', ['as' => 'file_backups.upload', 'uses' => 'FileBackupController@upload']);
+    Route::post('file_backups/{fileName}/restore', ['as' => 'file_backups.restore', 'uses' => 'FileBackupController@restore']);
+    Route::get('file_backups/{fileName}/dl', ['as' => 'file_backups.download', 'uses' => 'FileBackupController@download']);
+    Route::resource('file_backups', 'FileBackupController', ['except' => ['create', 'show', 'edit']]);
 
     /*
      * Users Routes

@@ -25,7 +25,7 @@ return [
     'left_part' => 'Bagian Kiri',
     'mid_part' => 'Bagian Tengah',
     'right_part' => 'Bagian Kanan',
-    'donate' => 'Infaq',
+    'donate' => 'infak',
     'program' => 'Program',
     'contact' => 'Kontak',
     'printed_at' => 'Dicetak pada',
@@ -35,6 +35,7 @@ return [
     // Action
     'create' => 'Input',
     'add' => 'Tambah',
+    'duplicate' => 'Duplikat',
     'submit' => 'Submit',
     'update' => 'Update',
     'delete' => 'Hapus',
@@ -56,6 +57,7 @@ return [
     'switch_lang' => 'Ganti Bahasa',
     'switch_en_lang' => 'Gunakan Bahasa Inggris',
     'switch_id_lang' => 'Gunakan Bahasa Indonesia',
+    'public_display' => 'Display TV',
 
     // Attributes
     'name' => 'Nama',
@@ -66,7 +68,7 @@ return [
     'time' => 'Jam',
     'created_at' => 'Dibuat pada',
     'created_by' => 'Diinput oleh',
-    'updated_at' => 'Updated pada',
+    'updated_at' => 'Diupdate pada',
     'start_date' => 'Tanggal Mulai',
     'end_date' => 'Tanggal Selesai',
     'gender' => 'Jenis Kelamin',
